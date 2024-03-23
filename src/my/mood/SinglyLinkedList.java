@@ -15,14 +15,32 @@ public class SinglyLinkedList {
         }
     }
 
+    // Displaying or printing Singly Linked List
     public void DisplaySinglyLinkedList(){
         ListNode currentNode = head;
         System.out.println("Singly Linked List : ");
+
         while (currentNode != null){
             System.out.print(currentNode.data + " -> ");
             currentNode = currentNode.next;
         }
-        System.out.print("null");
+        System.out.print("null\n");
+    }
+
+    // Calculating length of a Singly Linked List
+    public int length(){
+        if (head == null){
+            return 0;
+        }
+
+        int count = 0;
+        ListNode currentNode = head;
+
+        while (currentNode != null){
+            count+=1;
+            currentNode = currentNode.next;
+        }
+        return count;
     }
 
     public static void main(String[] args) {
@@ -45,6 +63,9 @@ public class SinglyLinkedList {
 
         // Displaying or printing Singly Linked List
         singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Calculating length of a Singly Linked List
+        System.out.println("Length of a Singly Linked List - " + singlyLinkedList.length());
 
     }
 }
