@@ -43,29 +43,88 @@ public class SinglyLinkedList {
         return count;
     }
 
+    // Inserting node at the beginning of the Singly Linked List
+    public void InsertFirst(int value){
+        ListNode newNode = new ListNode(value);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Inserting node at the ending of the Singly Linked List
+    public void InsertLast(int value){
+        ListNode newNode = new ListNode(value);
+        if (head == null){
+            head = newNode;
+            return;
+        }
+        ListNode temp = head;
+        while (null != temp.next){
+            temp = temp.next;
+        }
+        temp.next = newNode;
+    }
+
+    // Inserting node at a given position of the Singly Linked List
+    public void InsertAtPosition(int position, int value){
+        ListNode newNode = new ListNode(value);
+        if (position == 1){
+            newNode.next = head;
+            head = newNode;
+        }
+
+        ListNode previous = head;
+        int count = 0;
+        while (count < position - 1){
+            previous = previous.next;
+            count++;
+        }
+
+        ListNode temp = previous.next;
+        previous.next = newNode;
+        newNode.next = temp;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
         // Adding data or element to a node
-        singlyLinkedList.head = new ListNode(10);
-        ListNode second = new ListNode(20);
-        ListNode third = new ListNode(25);
-        ListNode fourth = new ListNode(30);
-        ListNode fifth = new ListNode(35);
+//        singlyLinkedList.head = new ListNode(10);
+//        ListNode second = new ListNode(20);
+//        ListNode third = new ListNode(25);
+//        ListNode fourth = new ListNode(30);
+//        ListNode fifth = new ListNode(35);
 
         // Assigning data of next node to previous node (reference)
-        singlyLinkedList.head.next = second;
-        second.next = third;
-        third.next = fourth;
-        fourth.next = fifth;
-        fifth.next = null;
+//        singlyLinkedList.head.next = second;
+//        second.next = third;
+//        third.next = fourth;
+//        fourth.next = fifth;
+//        fifth.next = null;
 
         // Displaying or printing Singly Linked List
         singlyLinkedList.DisplaySinglyLinkedList();
 
         // Calculating length of a Singly Linked List
         System.out.println("Length of a Singly Linked List - " + singlyLinkedList.length());
+
+        // Inserting node at the beginning of the Singly Linked List
+        singlyLinkedList.InsertFirst(11);
+        singlyLinkedList.InsertFirst(23);
+        singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Inserting node at the ending of the Singly Linked List
+        singlyLinkedList.InsertLast(32);
+        singlyLinkedList.InsertLast(12);
+        singlyLinkedList.InsertLast(25);
+        singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Inserting node at a given position of the Singly Linked List
+        singlyLinkedList.InsertAtPosition(1,5);
+        singlyLinkedList.InsertAtPosition(singlyLinkedList.length(),8 );
+        singlyLinkedList.InsertAtPosition(3,9);
+        singlyLinkedList.InsertAtPosition(3,99);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
     }
 }
