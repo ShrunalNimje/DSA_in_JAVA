@@ -1,4 +1,5 @@
 package my.mood;
+
 public class SinglyLinkedList {
 
     // Creating a head
@@ -84,6 +85,54 @@ public class SinglyLinkedList {
         newNode.next = temp;
     }
 
+    // Deleting node at a beginning of the Singly Linked List
+    public ListNode DeleteFirst(){
+        if (head == null){
+            return null;
+        }
+
+        ListNode temp = head;
+        head = temp.next;
+        temp.next = null;
+        return temp;
+    }
+
+    // Deleting node at an ending of the Singly Linked List
+    public ListNode DeleteLast(){
+        if (head == null || head.next == null){
+            return head;
+        }
+
+        ListNode temp = head;
+        ListNode previous = null;
+
+        while (temp.next != null){
+            previous = temp;
+            temp = temp.next;
+        }
+
+        previous.next = null;
+        return temp;
+    }
+
+    // Deleting node at a given position of the Singly Linked List
+    public void DeleteAtPosition(int Position){
+        if (Position == 1){
+            head = head.next;
+        }
+
+        ListNode previous = head;
+        int count = 1;
+
+        while (count < Position - 1){
+            previous = previous.next;
+            count++;
+        }
+
+        ListNode temp = previous.next;
+        previous.next = temp.next;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -124,6 +173,22 @@ public class SinglyLinkedList {
         singlyLinkedList.InsertAtPosition(singlyLinkedList.length(),8 );
         singlyLinkedList.InsertAtPosition(3,9);
         singlyLinkedList.InsertAtPosition(3,99);
+        singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Deleting node at a beginning of the Singly Linked List
+        System.out.println(singlyLinkedList.DeleteFirst().data);
+        System.out.println(singlyLinkedList.DeleteFirst().data);
+        System.out.println(singlyLinkedList.DeleteFirst().data);
+        singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Deleting node at an ending of the Singly Linked List
+        System.out.println(singlyLinkedList.DeleteLast().data);
+        System.out.println(singlyLinkedList.DeleteLast().data);
+        singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Deleting node at a given position of the Singly Linked List
+        singlyLinkedList.DeleteAtPosition(2);
+        singlyLinkedList.DeleteAtPosition(3);
         singlyLinkedList.DisplaySinglyLinkedList();
 
     }
