@@ -17,7 +17,7 @@ public class SinglyLinkedList {
     }
 
     // Displaying or printing Singly Linked List
-    public void DisplaySinglyLinkedList(){
+    public void DisplaySinglyLinkedList(ListNode head){
         ListNode currentNode = head;
         System.out.println("Singly Linked List : ");
 
@@ -133,6 +133,42 @@ public class SinglyLinkedList {
         previous.next = temp.next;
     }
 
+    // Searching element in a Singly Linked List
+    public boolean SearchElement(int searchKey){
+        if (head == null){
+            return false;
+        }
+
+        ListNode temp = head;
+
+        while (temp != null){
+            if (temp.data == searchKey){
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    // Reversing a Singly Linked List
+    public ListNode ReverseList(){
+        if (head == null){
+            return null;
+        }
+
+        ListNode temp = head;
+        ListNode previous = null;
+        ListNode next;
+
+        while (temp != null){
+            next = temp.next;
+            temp.next = previous;
+            previous = temp;
+            temp = next;
+        }
+        return previous;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -152,7 +188,7 @@ public class SinglyLinkedList {
 //        fifth.next = null;
 
         // Displaying or printing Singly Linked List
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Calculating length of a Singly Linked List
         System.out.println("Length of a Singly Linked List - " + singlyLinkedList.length());
@@ -160,36 +196,48 @@ public class SinglyLinkedList {
         // Inserting node at the beginning of the Singly Linked List
         singlyLinkedList.InsertFirst(11);
         singlyLinkedList.InsertFirst(23);
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Inserting node at the ending of the Singly Linked List
         singlyLinkedList.InsertLast(32);
         singlyLinkedList.InsertLast(12);
         singlyLinkedList.InsertLast(25);
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Inserting node at a given position of the Singly Linked List
         singlyLinkedList.InsertAtPosition(1,5);
         singlyLinkedList.InsertAtPosition(singlyLinkedList.length(),8 );
         singlyLinkedList.InsertAtPosition(3,9);
         singlyLinkedList.InsertAtPosition(3,99);
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Deleting node at a beginning of the Singly Linked List
         System.out.println(singlyLinkedList.DeleteFirst().data);
         System.out.println(singlyLinkedList.DeleteFirst().data);
         System.out.println(singlyLinkedList.DeleteFirst().data);
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Deleting node at an ending of the Singly Linked List
         System.out.println(singlyLinkedList.DeleteLast().data);
         System.out.println(singlyLinkedList.DeleteLast().data);
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Deleting node at a given position of the Singly Linked List
         singlyLinkedList.DeleteAtPosition(2);
         singlyLinkedList.DeleteAtPosition(3);
-        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+
+        // Searching element in a Singly Linked List
+        if (singlyLinkedList.SearchElement(9)){
+            System.out.println("element found!");
+        }
+        else {
+            System.out.println("Element not found!");
+        }
+
+        // Reversing a Singly Linked List
+        ListNode reverseList = singlyLinkedList.ReverseList();
+        singlyLinkedList.DisplaySinglyLinkedList(reverseList);
 
     }
 }
