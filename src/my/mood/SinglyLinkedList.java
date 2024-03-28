@@ -1,5 +1,7 @@
 package my.mood;
 
+import java.util.List;
+
 public class SinglyLinkedList {
 
     // Creating a head
@@ -17,7 +19,7 @@ public class SinglyLinkedList {
     }
 
     // Displaying or printing Singly Linked List
-    public void DisplaySinglyLinkedList(ListNode head){
+    public void DisplaySinglyLinkedList(){
         ListNode currentNode = head;
         System.out.println("Singly Linked List : ");
 
@@ -169,6 +171,87 @@ public class SinglyLinkedList {
         return previous;
     }
 
+    // Finding middle node of the singly linked list
+    public ListNode MiddleNode(){
+        if (head == null){
+            return null;
+        }
+
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        return slowPtr;
+    }
+
+    // Finding the nth node from the end of the singly linked list
+    public ListNode nthNodeFromEnd(int n){
+        if (head == null){
+            return null;
+        }
+
+        if (n <= 0){
+            throw new IllegalArgumentException("Invalid value of n = "+ n);
+        }
+
+        int count = 0;
+        ListNode temp = head;
+        ListNode next = head;
+
+        while (count < n){
+            if (next == null){
+                throw new IllegalArgumentException(n + " is greater than the no. of nodes in list");
+            }
+
+            next = next.next;
+            count++;
+        }
+
+        while (next != null){
+            next = next.next;
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    // Removing the duplicate node from the sorted singly linked list
+    public void RemoveDuplicateNode(){
+        if (head == null){
+            return;
+        }
+        ListNode temp = head;
+        while (temp.next != null){
+            if (temp.data ==temp.next.data ){
+                temp.next = temp.next.next;
+            }
+            else {
+                temp = temp.next;
+            }
+        }
+    }
+
+    // Inserting node in sorted singly linked list
+    public ListNode InsertInSortedList(int value){
+        ListNode newNode = new ListNode(value);
+        if (head == null){
+            return newNode;
+        }
+
+        ListNode temp = head;
+        ListNode previous = null;
+
+        while (temp != null && temp.data < newNode.data){
+                previous = temp;
+                temp = temp.next;
+        }
+
+        newNode.next = temp;
+        previous.next = newNode;
+        return head;
+    }
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -188,7 +271,7 @@ public class SinglyLinkedList {
 //        fifth.next = null;
 
         // Displaying or printing Singly Linked List
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
         // Calculating length of a Singly Linked List
         System.out.println("Length of a Singly Linked List - " + singlyLinkedList.length());
@@ -196,36 +279,36 @@ public class SinglyLinkedList {
         // Inserting node at the beginning of the Singly Linked List
         singlyLinkedList.InsertFirst(11);
         singlyLinkedList.InsertFirst(23);
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
         // Inserting node at the ending of the Singly Linked List
         singlyLinkedList.InsertLast(32);
         singlyLinkedList.InsertLast(12);
         singlyLinkedList.InsertLast(25);
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
         // Inserting node at a given position of the Singly Linked List
         singlyLinkedList.InsertAtPosition(1,5);
         singlyLinkedList.InsertAtPosition(singlyLinkedList.length(),8 );
         singlyLinkedList.InsertAtPosition(3,9);
         singlyLinkedList.InsertAtPosition(3,99);
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
         // Deleting node at a beginning of the Singly Linked List
         System.out.println(singlyLinkedList.DeleteFirst().data);
         System.out.println(singlyLinkedList.DeleteFirst().data);
         System.out.println(singlyLinkedList.DeleteFirst().data);
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
         // Deleting node at an ending of the Singly Linked List
         System.out.println(singlyLinkedList.DeleteLast().data);
         System.out.println(singlyLinkedList.DeleteLast().data);
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+        singlyLinkedList.DisplaySinglyLinkedList();
 
         // Deleting node at a given position of the Singly Linked List
-        singlyLinkedList.DeleteAtPosition(2);
-        singlyLinkedList.DeleteAtPosition(3);
-        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
+//        singlyLinkedList.DeleteAtPosition(2);
+//        singlyLinkedList.DeleteAtPosition(3);
+//        singlyLinkedList.DisplaySinglyLinkedList(singlyLinkedList.head);
 
         // Searching element in a Singly Linked List
         if (singlyLinkedList.SearchElement(9)){
@@ -236,8 +319,38 @@ public class SinglyLinkedList {
         }
 
         // Reversing a Singly Linked List
-        ListNode reverseList = singlyLinkedList.ReverseList();
-        singlyLinkedList.DisplaySinglyLinkedList(reverseList);
+//        ListNode reverseList = singlyLinkedList.ReverseList();
+//        singlyLinkedList.DisplaySinglyLinkedList(reverseList);
 
+        // Finding middle node of the singly linked list
+        singlyLinkedList.DisplaySinglyLinkedList();
+        ListNode m = singlyLinkedList.MiddleNode();
+        System.out.println("middle node - "+ m.data);
+
+        // Finding the nth node from the end of the singly linked list
+        singlyLinkedList.DisplaySinglyLinkedList();
+        ListNode node = singlyLinkedList.nthNodeFromEnd(3);
+        System.out.println("Third last node - " + node.data);
+
+        // Removing the duplicate node from the sorted singly linked list
+        singlyLinkedList.InsertFirst(45);
+        singlyLinkedList.InsertFirst(45);
+        singlyLinkedList.InsertFirst(23);
+        singlyLinkedList.InsertFirst(14);
+        singlyLinkedList.InsertFirst(12);
+        singlyLinkedList.InsertFirst(12);
+        singlyLinkedList.DeleteLast();
+        singlyLinkedList.DeleteLast();
+        singlyLinkedList.DeleteLast();
+        singlyLinkedList.DeleteLast();
+        singlyLinkedList.RemoveDuplicateNode();
+        singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Inserting node in sorted singly linked list
+        singlyLinkedList.InsertInSortedList(30);
+        singlyLinkedList.DisplaySinglyLinkedList();
+        singlyLinkedList.InsertInSortedList(60);
+        singlyLinkedList.InsertInSortedList(18);
+        singlyLinkedList.DisplaySinglyLinkedList();
     }
 }
