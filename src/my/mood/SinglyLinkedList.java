@@ -277,6 +277,43 @@ public class SinglyLinkedList {
         return true;
     }
 
+    // Checking whether Loop contains in the Singly Linked List or not
+    public Boolean ContainsLoop(){
+        if (head == null){
+            return false;
+        }
+
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null){
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (slowPtr == fastPtr){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void CreateLoop(){
+        ListNode first = new ListNode(2);
+        ListNode second = new ListNode(4);
+        ListNode third = new ListNode(9);
+        ListNode fourth = new ListNode(8);
+        ListNode fifth = new ListNode(7);
+        ListNode sixth = new ListNode(1);
+
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = sixth;
+        sixth.next = fourth;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -385,6 +422,15 @@ public class SinglyLinkedList {
         }
         else{
             System.out.println("Entered wrong key!");
+        }
+
+        // Checking whether loop contains in Singly Linked List or not
+        singlyLinkedList.CreateLoop();
+        if (singlyLinkedList.ContainsLoop()){
+            System.out.println("Singly Linked List contains loop!");
+        }
+        else{
+            System.out.println("Singly Linked List not contains loop!");
         }
 
     }
