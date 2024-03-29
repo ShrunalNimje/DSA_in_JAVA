@@ -1,7 +1,5 @@
 package my.mood;
 
-import java.util.List;
-
 public class SinglyLinkedList {
 
     // Creating a head
@@ -252,6 +250,33 @@ public class SinglyLinkedList {
         previous.next = newNode;
         return head;
     }
+
+    // Removing a key from the singly linked list
+    public Boolean RemoveKey(int key){
+        if (head == null){
+            return false;
+        }
+
+        ListNode temp = head;
+        ListNode previous = null;
+
+        while (temp != null && temp.data == key){
+            head = temp.next;
+            return true;
+        }
+
+        while (temp != null && temp.data != key){
+            previous = temp;
+            temp = temp.next;
+        }
+
+        if (temp == null){
+            return false;
+        }
+        previous.next = temp.next;
+        return true;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -352,5 +377,15 @@ public class SinglyLinkedList {
         singlyLinkedList.InsertInSortedList(60);
         singlyLinkedList.InsertInSortedList(18);
         singlyLinkedList.DisplaySinglyLinkedList();
+
+        // Removing a key from the singly linked list
+        if (singlyLinkedList.RemoveKey(60)){
+            System.out.println("Key removed!");
+            singlyLinkedList.DisplaySinglyLinkedList();
+        }
+        else{
+            System.out.println("Entered wrong key!");
+        }
+
     }
 }
