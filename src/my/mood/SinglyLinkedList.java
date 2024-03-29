@@ -314,6 +314,36 @@ public class SinglyLinkedList {
         sixth.next = fourth;
     }
 
+    // Finding starting node of the loop in Singly Linked List
+    public ListNode FirstNodeOfLoop(){
+        if (head == null){
+            return null;
+        }
+
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null){
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (fastPtr == slowPtr){
+                return GetFirstNodeOfLoop(slowPtr);
+            }
+        }
+        return null;
+    }
+
+    public ListNode GetFirstNodeOfLoop(ListNode slowPtr){
+        ListNode temp = head;
+
+        while (temp != slowPtr){
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+        return temp;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -432,6 +462,9 @@ public class SinglyLinkedList {
         else{
             System.out.println("Singly Linked List not contains loop!");
         }
+
+        // Finding starting node of the loop in Singly Linked List
+        System.out.println("starting node of the loop in Singly Linked List : " + singlyLinkedList.FirstNodeOfLoop().data);
 
     }
 }
