@@ -344,6 +344,36 @@ public class SinglyLinkedList {
         return temp;
     }
 
+    // Removing a loop from the singly linked list
+    public void RemoveLoop(){
+        if (head == null){
+            return;
+        }
+
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null){
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (fastPtr == slowPtr){
+                RemoveLoop(slowPtr);
+                return;
+            }
+        }
+    }
+
+    private void RemoveLoop(ListNode slowPtr){
+        ListNode temp = head;
+
+        while (temp.next != slowPtr.next){
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+        slowPtr.next = null;
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
@@ -465,6 +495,10 @@ public class SinglyLinkedList {
 
         // Finding starting node of the loop in Singly Linked List
         System.out.println("starting node of the loop in Singly Linked List : " + singlyLinkedList.FirstNodeOfLoop().data);
+
+        // Removing a loop from the singly linked list
+        singlyLinkedList.RemoveLoop();
+        singlyLinkedList.DisplaySinglyLinkedList();
 
     }
 }
