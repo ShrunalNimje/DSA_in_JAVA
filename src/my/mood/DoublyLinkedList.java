@@ -92,7 +92,7 @@ public class DoublyLinkedList {
     // deleting first node from doubly linked list
     public void deleteFirst(){
         if (EmptyList()){
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("List is Empty!");
         }
 
         ListNode temp = head;
@@ -106,6 +106,24 @@ public class DoublyLinkedList {
 
         head = head.next;
         temp.next = null;
+        length--;
+    }
+
+    public void deleteLast(){
+        if (EmptyList()){
+            throw new NoSuchElementException("List is Empty!");
+        }
+
+        ListNode temp = tail;
+        if (head == tail){
+            head = null;
+        }
+        else {
+            tail.previous.next = null;
+        }
+
+        tail = tail.previous;
+        temp.previous = null;
         length--;
     }
 
@@ -154,6 +172,12 @@ public class DoublyLinkedList {
         doublyLinkedList1.deleteFirst();
         doublyLinkedList1.deleteFirst();
         doublyLinkedList1.deleteFirst();
+        doublyLinkedList1.displayForward();
+
+        // deleting first node from doubly linked list
+        doublyLinkedList1.deleteLast();
+        doublyLinkedList1.deleteLast();
+        doublyLinkedList1.deleteLast();
         doublyLinkedList1.displayForward();
 
     }
