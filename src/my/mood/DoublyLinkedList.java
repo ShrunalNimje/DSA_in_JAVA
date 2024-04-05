@@ -21,6 +21,7 @@ public class DoublyLinkedList {
     DoublyLinkedList(){
         this.head = null;
         this.tail = null;
+        this.length = 0;
     }
 
     public Boolean EmptyList(){
@@ -54,6 +55,22 @@ public class DoublyLinkedList {
         System.out.println("null");
     }
 
+    // Inserting node at the beginning of the doubly linked list
+    public void insertFirst(int value){
+        ListNode newNode = new ListNode(value);
+
+        if (EmptyList()){
+            tail = newNode;
+        }
+        else {
+            head.previous = newNode;
+        }
+
+        newNode.next = head;
+        head = newNode;
+        length++;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
         ListNode first = new ListNode(2);
@@ -76,5 +93,16 @@ public class DoublyLinkedList {
         // Printing elements of doubly linked list
         doublyLinkedList.displayForward();
         doublyLinkedList.displayBackward();
+
+        DoublyLinkedList doublyLinkedList1 = new DoublyLinkedList();
+
+        // Inserting node at the beginning of the doubly linked list
+        doublyLinkedList1.insertFirst(2);
+        doublyLinkedList1.insertFirst(4);
+        doublyLinkedList1.insertFirst(2);
+        doublyLinkedList1.insertFirst(4);
+        doublyLinkedList1.displayForward();
+        doublyLinkedList1.displayBackward();
+
     }
 }
