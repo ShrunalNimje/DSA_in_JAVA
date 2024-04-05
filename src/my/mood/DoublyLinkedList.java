@@ -1,5 +1,7 @@
 package my.mood;
 
+import java.util.NoSuchElementException;
+
 public class DoublyLinkedList {
     // creating a head
     private ListNode head;
@@ -87,6 +89,26 @@ public class DoublyLinkedList {
         length++;
     }
 
+    // deleting first node from doubly linked list
+    public void deleteFirst(){
+        if (EmptyList()){
+            throw new NoSuchElementException();
+        }
+
+        ListNode temp = head;
+
+        if (head == tail){
+            tail = null;
+        }
+        else {
+            head.next.previous = null;
+        }
+
+        head = head.next;
+        temp.next = null;
+        length--;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
         ListNode first = new ListNode(2);
@@ -127,5 +149,12 @@ public class DoublyLinkedList {
         doublyLinkedList1.insertLast(5);
         doublyLinkedList1.displayForward();
         doublyLinkedList1.displayBackward();
+
+        // deleting first node from doubly linked list
+        doublyLinkedList1.deleteFirst();
+        doublyLinkedList1.deleteFirst();
+        doublyLinkedList1.deleteFirst();
+        doublyLinkedList1.displayForward();
+
     }
 }
