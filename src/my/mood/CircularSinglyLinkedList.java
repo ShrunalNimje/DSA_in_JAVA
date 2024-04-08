@@ -50,6 +50,7 @@ public class CircularSinglyLinkedList {
         last = sixth;
     }
 
+    // printing elements of Circular singly linked list
     public void displayList(){
         if (last == null){
             System.out.println("List is Empty!");
@@ -61,17 +62,58 @@ public class CircularSinglyLinkedList {
         while (first != last){
             System.out.print(first.data + " ");
             first = first.next;
-            length++;
         }
 
         System.out.println(first.data);
+    }
+
+    // Inserting node at the beginning of the Circular Singly Linked List
+    public void insertFirst(int data){
+        ListNode newNode = new ListNode(data);
+
+        if (isEmpty()){
+            last = newNode;
+        }
+        else {
+            newNode.next = last.next;
+        }
+
+        last.next = newNode;
         length++;
-        System.out.println(getLength());
+    }
+
+    // Inserting node at the ending of the Circular Singly Linked List
+    public void insertLast(int data){
+        ListNode newNode = new ListNode(data);
+
+        if (isEmpty()){
+            last = newNode;
+            last.next = last;
+        }
+        else {
+            newNode.next = last.next;
+            last.next = newNode;
+            last = newNode;
+        }
+
+        length++;
     }
 
     public static void main(String[] args) {
+        // Creating instance of the class
         CircularSinglyLinkedList circularSinglyLinkedList = new CircularSinglyLinkedList();
         circularSinglyLinkedList.createList();
         circularSinglyLinkedList.displayList();
+
+        CircularSinglyLinkedList circularSinglyLinkedList1 = new CircularSinglyLinkedList();
+        // Inserting node at the beginning of the Circular Singly Linked List
+        circularSinglyLinkedList1.insertFirst(23);
+        circularSinglyLinkedList1.insertFirst(12);
+
+        // Inserting node at the ending of the Circular Singly Linked List
+        circularSinglyLinkedList1.insertLast(1);
+        circularSinglyLinkedList1.insertLast(4);
+        circularSinglyLinkedList1.displayList();
+
     }
 }
