@@ -25,3 +25,21 @@ Understanding data structures and algorithms is essential for any software devel
 To use this repository, you can follow these steps:
 
 1. Clone the repository to your local machine:
+
+2. Navigate to the directory containing the Java files for the data structures and algorithms you're interested in.
+
+3. Compile the Java files using a Java compiler:
+
+4. Run the compiled Java files to see the implementations in action:
+
+5. Feel free to explore the implementations, modify them, and use them as needed in your projects.
+
+## Contributing
+
+Contributions to this repository are welcome. If you find any bugs, have suggestions for improvements, or want to add new data structures or algorithms, please feel free to open an issue or submit a pull request.
+
+When contributing, please ensure that your code follows the established coding conventions and includes appropriate documentation and comments to aid understanding.
+
+## License
+
+This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
