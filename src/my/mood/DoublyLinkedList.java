@@ -107,7 +107,10 @@ public class DoublyLinkedList {
         temp.next = newNode;
         newNode.previous = temp;
         newNode.next = next;
-        next.previous = newNode;
+
+        if (next != null){
+            next.previous = newNode;
+        }
         length++;
     }
 
