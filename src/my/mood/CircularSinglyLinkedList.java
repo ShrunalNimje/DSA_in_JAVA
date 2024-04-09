@@ -1,5 +1,7 @@
 package my.mood;
 
+import java.util.NoSuchElementException;
+
 public class CircularSinglyLinkedList {
 
     // creating instance variable 'last' from ListNode
@@ -99,6 +101,24 @@ public class CircularSinglyLinkedList {
         length++;
     }
 
+    // Removing first node from circular singly linked list
+    public int removeFirst(){
+        if (isEmpty()){
+            throw new NoSuchElementException("List is Empty!");
+        }
+
+        ListNode first = last.next;
+        if (first != last){
+            last.next = first.next;
+            first.next = null;
+        }
+        else {
+            last = null;
+        }
+        length--;
+        return first.data;
+    }
+
     public static void main(String[] args) {
         // Creating instance of the class
         CircularSinglyLinkedList circularSinglyLinkedList = new CircularSinglyLinkedList();
@@ -113,6 +133,11 @@ public class CircularSinglyLinkedList {
         // Inserting node at the ending of the Circular Singly Linked List
         circularSinglyLinkedList1.insertLast(1);
         circularSinglyLinkedList1.insertLast(4);
+        circularSinglyLinkedList1.displayList();
+
+        // Removing first node from circular singly linked list
+        circularSinglyLinkedList1.removeFirst();
+        System.out.println("Node removed : "+ circularSinglyLinkedList1.removeFirst());
         circularSinglyLinkedList1.displayList();
 
     }
