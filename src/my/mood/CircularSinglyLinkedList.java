@@ -119,6 +119,32 @@ public class CircularSinglyLinkedList {
         return first.data;
     }
 
+    // Removing first node from circular singly linked list
+    public void removeLast(){
+        if (isEmpty()){
+            throw new NoSuchElementException("List is Empty!");
+        }
+
+        ListNode first = last.next;
+        ListNode temp = first;
+        ListNode previous = null;
+
+        while (temp != last){
+            previous = temp;
+            temp = temp.next;
+        }
+
+        if (first != last){
+            previous.next = first;
+            last = previous;
+        }
+        else {
+            last = null;
+        }
+
+        length--;
+    }
+
     public static void main(String[] args) {
         // Creating instance of the class
         CircularSinglyLinkedList circularSinglyLinkedList = new CircularSinglyLinkedList();
@@ -138,6 +164,10 @@ public class CircularSinglyLinkedList {
         // Removing first node from circular singly linked list
         circularSinglyLinkedList1.removeFirst();
         System.out.println("Node removed : "+ circularSinglyLinkedList1.removeFirst());
+        circularSinglyLinkedList1.displayList();
+
+        // Removing last node from circular singly linked list
+        circularSinglyLinkedList1.removeLast();
         circularSinglyLinkedList1.displayList();
 
     }
