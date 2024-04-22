@@ -2,7 +2,7 @@ package my.mood;
 
 import java.util.EmptyStackException;
 
-public class Stack {
+public class StackUsingLinkedList {
 
     // Creating instance variable 'top'
     private ListNode top;
@@ -18,7 +18,7 @@ public class Stack {
         }
     }
 
-    public Stack(){
+    public StackUsingLinkedList(){
         this.top = null;
         this.length = 0;
     }
@@ -55,14 +55,25 @@ public class Stack {
         return result;
     }
 
+    // Peek operation for top data
+    public int peek(){
+        if (isEmpty()){
+            throw new EmptyStackException();
+        }
+        return top.data;
+    }
+
     public static void main(String[] args) {
-        Stack stack = new Stack();
+        StackUsingLinkedList stack = new StackUsingLinkedList();
         // Push operation for deletion data
-        System.out.println(stack.push(3));
-        System.out.println(stack.push(12));
+        System.out.println(stack.push(3) + " element push");
+        System.out.println(stack.push(12) + " element push");
 
         // Pop operation for deletion data
-        System.out.println(stack.pop());
+        System.out.println(stack.pop() + " element pop");
+
+        // Peek operation for top data
+        System.out.println("Peek element : " + stack.peek());
 
     }
 }
