@@ -55,6 +55,21 @@ public class StackUsingArray {
         return arr[top];
     }
 
+    // Reversing a String using a Stack
+    public static String reverseString(String s){
+        StackUsingArray stackUsingArray = new StackUsingArray();
+        char [] array = s.toCharArray();
+
+        for (char c : array){
+            stackUsingArray.push(c);
+        }
+
+        for (int i=0; i< s.length(); i++){
+            array[i] = (char) stackUsingArray.pop();
+        }
+        return new String(array);
+    }
+
     public static void main(String[] args) {
         StackUsingArray stack = new StackUsingArray(4);
         // Push operation
@@ -78,5 +93,9 @@ public class StackUsingArray {
         // Peek operation
         System.out.println(stack1.peek());
 
+        // Reversing a String using a Stack
+        String s = "Shrunal";
+        System.out.println("Before reverse : "+ s);
+        System.out.println("After reverse : "+ reverseString(s));
     }
 }
