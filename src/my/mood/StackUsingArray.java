@@ -15,6 +15,22 @@ public class StackUsingArray {
         this(10); // by default capacity will be 10
     }
 
+    // Printing an elements of the stack
+    public void print(){
+        if (top == -1){
+            System.out.println("null");
+            return;
+        }
+
+        int current = 0;
+        while (current <= top){
+            System.out.print(arr[current]+ " -> ");
+            current = current+1;
+        }
+
+        System.out.println("null");
+    }
+
     // overFlow condition (Full Stack)
     public boolean overFlow(){
         return arr.length == top+1;
@@ -75,6 +91,10 @@ public class StackUsingArray {
         // Push operation
         stack.push(2);
         stack.push(3);
+        stack.push(5);
+
+        // Printing an elements of the stack
+        stack.print();
 
         // Pop operation
         System.out.println(stack.pop());
@@ -92,6 +112,9 @@ public class StackUsingArray {
 
         // Peek operation
         System.out.println(stack1.peek());
+
+        // Printing an elements of the stack
+        stack.print();
 
         // Reversing a String using a Stack
         String s = "Shrunal";
