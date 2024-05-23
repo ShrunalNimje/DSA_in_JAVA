@@ -34,6 +34,16 @@ public class StackUsingLinkedList {
         return length == 0;
     }
 
+    // Printing the element of stack
+    public void print(){
+        ListNode current = top;
+        while (current != null){
+            System.out.print(current.data+" -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
     // Push operation for insertion data
     public int push(int data){
         ListNode newNode = new ListNode(data);
@@ -124,9 +134,19 @@ public class StackUsingLinkedList {
         // Push operation for deletion data
         System.out.println(stack.push(3) + " element push");
         System.out.println(stack.push(12) + " element push");
+        System.out.println(stack.push(2) + " element push");
+        System.out.println(stack.push(14) + " element push");
+        System.out.println(stack.push(9) + " element push");
+
+        // Printing an elements of a Stack
+        stack.print();
 
         // Pop operation for deletion data
         System.out.println(stack.pop() + " element pop");
+        System.out.println(stack.pop() + " element pop");
+
+        // Printing an elements of a Stack
+        stack.print();
 
         // Peek operation for top data
         System.out.println("Peek element : " + stack.peek());
