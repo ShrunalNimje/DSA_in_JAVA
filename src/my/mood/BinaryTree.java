@@ -1,5 +1,7 @@
 package my.mood;
 
+import java.util.Stack;
+
 public class BinaryTree {
 
     // Creating instance variable root
@@ -20,10 +22,10 @@ public class BinaryTree {
 
     public void createBinaryTree(){
         TreeNode first = new TreeNode(1);
-        TreeNode second = new TreeNode(1);
-        TreeNode third = new TreeNode(1);
-        TreeNode fourth = new TreeNode(1);
-        TreeNode fifth = new TreeNode(1);
+        TreeNode second = new TreeNode(2);
+        TreeNode third = new TreeNode(3);
+        TreeNode fourth = new TreeNode(4);
+        TreeNode fifth = new TreeNode(5);
 
         root = first;
         first.left = second;
@@ -32,8 +34,45 @@ public class BinaryTree {
         third.left = fifth;
     }
 
+    // Recursive PreOrder Binary Tree
+    public void preOrderRecursive(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        System.out.print(root.data+ " ");
+        preOrderRecursive(root.left);
+        preOrderRecursive(root.right);
+    }
+
+    // Iterative PreOrder Binary Tree
+    public void preOrderIterative(){
+        System.out.println();
+        if (root == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode temp = stack.pop();
+            System.out.print(temp.data+ " ");
+
+            if (temp.right != null){
+                stack.push(temp.right);
+            }
+
+            if (temp.left != null){
+                stack.push(temp.left);
+            }
+        }
+    }
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.createBinaryTree();
+
+        // Pre-order Binary Tree
+        binaryTree.preOrderRecursive(binaryTree.root);
+        binaryTree.preOrderIterative();
     }
 }
