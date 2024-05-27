@@ -67,6 +67,41 @@ public class BinaryTree {
             }
         }
     }
+
+    // Recursive InOrder Binary Tree
+    public void inOrderRecursive(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        inOrderRecursive(root.left);
+        System.out.print(root.data+ " ");
+        inOrderRecursive(root.right);
+    }
+
+    // Iterative InOrder Binary Tree
+    public void inOrderIterative(TreeNode root){
+        System.out.println();
+        if (root == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = root;
+
+        while (!stack.isEmpty() || temp != null){
+            if (temp != null){
+                stack.push(temp);
+                temp = temp.left;
+            }
+            else {
+                temp = stack.pop();
+                System.out.print(temp.data + " ");
+                temp = temp.right;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.createBinaryTree();
@@ -74,5 +109,10 @@ public class BinaryTree {
         // Pre-order Binary Tree
         binaryTree.preOrderRecursive(binaryTree.root);
         binaryTree.preOrderIterative();
+
+        // In-order Binary Tree
+        System.out.println();
+        binaryTree.inOrderRecursive(binaryTree.root);
+        binaryTree.inOrderIterative(binaryTree.root);
     }
 }
