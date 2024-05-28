@@ -80,7 +80,7 @@ public class BinaryTree {
     }
 
     // Iterative InOrder Binary Tree
-    public void inOrderIterative(TreeNode root){
+    public void inOrderIterative(){
         System.out.println();
         if (root == null){
             return;
@@ -102,6 +102,48 @@ public class BinaryTree {
         }
     }
 
+    // Recursive PostOrder Binary Tree
+    public void postOrderRecursive(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        postOrderRecursive(root.left);
+        postOrderRecursive(root.right);
+        System.out.print(root.data + " ");
+    }
+
+    // Iterative PostOrder Binary Tree
+    public void postOrderIterative(){
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        System.out.println();
+        if (root == null){
+            return;
+        }
+
+        while (!stack.isEmpty() || current != null){
+            if (current != null){
+                stack.push(current);
+                current = current.left;
+            }
+            else {
+                TreeNode temp = stack.peek().right;
+                if (temp == null){
+                    temp = stack.pop();
+                    System.out.print(temp.data +" ");
+                    while (!stack.isEmpty() && temp == stack.peek().right){
+                        temp = stack.pop();
+                        System.out.print(temp.data + " ");
+                    }
+                }
+                else {
+                    current = temp;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.createBinaryTree();
@@ -113,6 +155,11 @@ public class BinaryTree {
         // In-order Binary Tree
         System.out.println();
         binaryTree.inOrderRecursive(binaryTree.root);
-        binaryTree.inOrderIterative(binaryTree.root);
+        binaryTree.inOrderIterative();
+
+        // Post-order Binary Tree
+        System.out.println();
+        binaryTree.postOrderRecursive(binaryTree.root);
+        binaryTree.postOrderIterative();
     }
 }
