@@ -168,6 +168,25 @@ public class BinaryTree {
         }
     }
 
+    // Maximum value in Binary Tree
+    public int maxNode(TreeNode root){
+        if (root == null){
+            return Integer.MIN_VALUE;
+        }
+
+        int result = root.data;
+        int left = maxNode(root.left);
+        int right = maxNode(root.right);
+
+        if (left > result){
+            result = left;
+        }
+        if (right > result){
+            result = right;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.createBinaryTree();
@@ -189,5 +208,10 @@ public class BinaryTree {
         // Level-order Binary Tree
         System.out.println();
         binaryTree.levelOrder(binaryTree.root);
+
+        // Maximum value in Binary Tree
+        System.out.println();
+        System.out.println(binaryTree.maxNode(binaryTree.root));
+
     }
 }
