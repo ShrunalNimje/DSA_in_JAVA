@@ -67,6 +67,45 @@ public class BinarySearchTree {
         }
     }
 
+    // checking whether a BST is validated or not
+    public boolean isValidate(TreeNode root, long min, long max){
+        if (root == null){
+            return true;
+        }
+
+        if (root.data >= max || root.data <= min){
+            return false;
+        }
+
+        boolean left = isValidate(root.left, min, root.data);
+
+        if (left){
+            boolean right = isValidate(root.right, root.data, max);
+            return right;
+        }
+
+        return false;
+    }
+
+    // create binary search tree
+    public void binaryST(){
+        TreeNode first = new TreeNode(5);
+        TreeNode second = new TreeNode(3);
+        TreeNode third = new TreeNode(8);
+        TreeNode fourth = new TreeNode(2);
+        TreeNode fifth = new TreeNode(7);
+        TreeNode sixth = new TreeNode(6);
+        TreeNode seventh = new TreeNode(9);
+
+        root = first;
+        first.left = second;
+        first.right = third;
+        second.left = fourth;
+        second.right = fifth;
+        third.left = sixth;
+        third.right = seventh;
+
+    }
     public static void main(String[] args) {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
 
@@ -86,5 +125,14 @@ public class BinarySearchTree {
             System.out.println("\nSearch key not found!");
         }
 
+        BinarySearchTree binarySearchTree1 = new BinarySearchTree();
+        binarySearchTree1.binaryST();
+        binarySearchTree1.print();
+        if (binarySearchTree1.isValidate(binarySearchTree1.root, Long.MIN_VALUE, Long.MAX_VALUE)){
+            System.out.println("\nBinary search tree is validate");
+        }
+        else {
+            System.out.println("\nBinary search tree is not validate");
+        }
     }
 }
