@@ -1,11 +1,12 @@
 package my.mood;
 
-public class BinaryHeap {
+public class MaxPQ {
+
     public Integer [] heap;
     public int n;
 
     // Implementation of Binary Heap
-    public BinaryHeap(int capacity){
+    public MaxPQ(int capacity){
         heap = new Integer[capacity + 1];
         n = 0;
     }
@@ -55,20 +56,20 @@ public class BinaryHeap {
     }
 
     public static void main(String[] args) {
-        BinaryHeap binaryHeap = new BinaryHeap(5);
+        MaxPQ maxPQ = new MaxPQ(5);
 
-        System.out.println(binaryHeap.isEmpty());
-        System.out.println(binaryHeap.getSize());
+        System.out.println(maxPQ.isEmpty());
+        System.out.println(maxPQ.getSize());
 
         // Insert a value in Max Binary heap
-        binaryHeap.insert(3);
-        binaryHeap.insert(5);
-        binaryHeap.insert(1);
-        binaryHeap.insert(23);
-        binaryHeap.insert(4);
-        binaryHeap.insert(13);
-        binaryHeap.insert(11);
-        binaryHeap.printMaxBinaryHeap();
+        maxPQ.insert(3);
+        maxPQ.insert(5);
+        maxPQ.insert(1);
+        maxPQ.insert(23);
+        maxPQ.insert(4);
+        maxPQ.insert(13);
+        maxPQ.insert(11);
+        maxPQ.printMaxBinaryHeap();
 
     }
 }
