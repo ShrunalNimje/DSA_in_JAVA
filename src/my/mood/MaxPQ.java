@@ -19,37 +19,74 @@ public class MaxPQ {
         return n;
     }
 
-    // Insert a value in Binary heap
+    // Insert a value in Max Priority Queue
     public void insert(int value){
         if (n == heap.length-1){
-            reSize(2* heap.length);
+             resize(2*heap.length);
         }
+
         n++;
         heap[n] = value;
         swim(n);
     }
 
-    private void reSize(int a) {
-        Integer [] temp = new Integer[a];
+    public void resize(int capacity){
+        Integer [] temp = new Integer[capacity];
 
-        for (int i = 0; i < heap.length; i++){
+        for (int i = 1;  i < heap.length; i++){
             temp[i] = heap[i];
         }
         heap = temp;
     }
 
-    private void swim(int k) {
-        while (k > 1 && heap[k / 2] < heap[k]) {
-            int temp = heap[k];
-            heap[k] = heap[k / 2];
-            heap[k / 2] = temp;
-            k = k / 2; // because we need to continue shifting up till
-            // new value inserted is at correct position
+    public void swim(int a){
+        while (a > 1 && heap[a/2] < heap[a]){
+            int temp = heap[a];
+            heap[a] = heap[a/2];
+            heap[a/2] = temp;
+            a = a/2;
         }
     }
 
+    // delete maximum value in Max priority queue
+    public int deleteMax(){
+        System.out.println();
+        int max = heap[1];
+        swap(1,n);
+        n--;
+
+        sink(1);
+        heap[n+1] = null;
+        if (n > 0 && n == (heap.length-1)/4 ){
+            resize(heap.length/2);
+        }
+        return max;
+    }
+
+    public void sink(int a){
+        while (2*a <= n){
+            int j = 2*a;
+
+            if (j < n && heap[j] < heap[j+1]){
+                j++;
+            }
+            if (heap[a] >= heap[j]){
+                break;
+            }
+
+            swap(a, j);
+            a = j;
+        }
+    }
+
+    public void swap(int a, int b){
+        int temp = heap[a];
+        heap[a] = heap[b];
+        heap[b] = temp;
+    }
+
     // Printing elements of Binary Heap
-    public void printMaxBinaryHeap(){
+    public void printMaxPQ(){
         for (int i = 1; i <= n; i++){
             System.out.print(heap[i] + " ");
         }
@@ -69,7 +106,12 @@ public class MaxPQ {
         maxPQ.insert(4);
         maxPQ.insert(13);
         maxPQ.insert(11);
-        maxPQ.printMaxBinaryHeap();
+        maxPQ.printMaxPQ();
+
+        // delete max value in max priority queue
+        System.out.println(maxPQ.deleteMax());
+        System.out.println(maxPQ.deleteMax());
+        maxPQ.printMaxPQ();
 
     }
 }
