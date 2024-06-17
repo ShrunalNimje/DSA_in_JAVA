@@ -46,6 +46,34 @@ public class MergeTwoSortedArray {
         System.out.println();
     }
 
+    // Implementation of sorted array of 0's, 1's & 2's
+    public void sort(int [] arr, int low, int high){
+        int i = low;
+        int j = low;
+        int k = high;
+
+        while (i <= k){
+            if (arr[i] == 0){
+                swap(arr, i, j);
+                i++;
+                j++;
+            }
+            else if (arr[i] == 1){
+                i++;
+            }
+            else if (arr[i] == 2) {
+                swap(arr, i, k);
+                k--;
+            }
+        }
+    }
+
+    public void swap(int [] arr, int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
     public static void main(String[] args) {
 
         MergeTwoSortedArray mergeTwoSortedArray = new MergeTwoSortedArray();
@@ -57,6 +85,12 @@ public class MergeTwoSortedArray {
         // Combining two sorted array
         int [] merge = mergeTwoSortedArray.merge(array, array2);
         mergeTwoSortedArray.print(merge);
+
+        // Implementation of sorted array of 0's, 1's & 2's
+        int [] array3 = {1, 0, 2, 0, 0, 1, 2, 1, 2, 1, 2, 0};
+        mergeTwoSortedArray.print(array3);
+        mergeTwoSortedArray.sort(array3, 0, array3.length - 1);
+        mergeTwoSortedArray.print(array3);
 
     }
 }
