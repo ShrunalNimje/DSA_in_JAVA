@@ -1,12 +1,12 @@
 package my.mood;
 
-public class Graph {
+public class AdjacencyMatrix {
 
     public int vertices;
     public int edges;
     public int [][] adjacencyMatrix;
 
-    public Graph(int nodes){
+    public AdjacencyMatrix(int nodes){
         this.vertices = nodes;
         this.edges = 0;
         this.adjacencyMatrix = new int[nodes][nodes];
@@ -37,12 +37,12 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph graph = new Graph(4);
-        graph.addEdges(0, 1);
-        graph.addEdges(1, 2);
-        graph.addEdges(2, 3);
-        graph.addEdges(3, 0);
+        AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix(4);
+        adjacencyMatrix.addEdges(0, 1);
+        adjacencyMatrix.addEdges(1, 2);
+        adjacencyMatrix.addEdges(2, 3);
+        adjacencyMatrix.addEdges(3, 0);
 
-        System.out.println(graph);
+        System.out.println(adjacencyMatrix);
     }
 }
