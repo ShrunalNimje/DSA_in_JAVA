@@ -2,6 +2,7 @@ package my.mood;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class AdjacencyList {
 
@@ -60,6 +61,27 @@ public class AdjacencyList {
         }
     }
 
+    // Implementation of Depth First Search ( DFS )
+    public void DFS(int source){
+        Stack<Integer> stack = new Stack<>();
+        boolean [] isVisited = new boolean[vertices];
+        stack.push(source);
+
+        while (!stack.isEmpty()){
+            int a = stack.pop();
+            if (!isVisited[a]){
+                isVisited[a] = true;
+                System.out.print(a + " ");
+
+                for (int element : adjacencyList[a]){
+                    if (!isVisited[element]){
+                        stack.push(element);
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         AdjacencyList adjacencyList = new AdjacencyList(5);
         adjacencyList.addNode(0, 1);
@@ -71,5 +93,9 @@ public class AdjacencyList {
 
         // Implementation of BFS
         adjacencyList.BFS(0);
+
+        // implementation pf DFS
+        System.out.println();
+        adjacencyList.DFS(2);
     }
 }
