@@ -38,11 +38,41 @@ public class HashTable {
         return sizeOfTable == 0;
     }
 
+    // put the key - value pair in HashTable
+    public void put(int key, String value){
+        int bucketIndex = getBucketIndex(key);
+        HashNode head = buckets[bucketIndex];
+
+        while (head != null){
+            if (head.key == key){
+                head.value = value;
+                return;
+            }
+            head = head.next;
+        }
+
+        sizeOfTable++;
+        head = buckets[bucketIndex];
+        HashNode newNode = new HashNode(key, value);
+        newNode.next = head;
+        buckets[bucketIndex] = newNode;
+    }
+
+    public int getBucketIndex(int key){
+        return key % noOfBuckets;
+    }
+
     public static void main(String[] args) {
         HashTable hashTable = new HashTable();
         System.out.println(hashTable.isEmpty());
         System.out.println(hashTable.getSizeOfTable());
         System.out.println(hashTable.noOfBuckets);
+
+        hashTable.put(12, "Adam");
+        hashTable.put(34, "Child");
+        hashTable.put(22, "Nothing");
+        hashTable.put(34, "Adam-1");
+        System.out.println(hashTable.getSizeOfTable());
 
     }
 }
