@@ -19,6 +19,18 @@ Understanding data structures and algorithms is essential for any software devel
 
 1. **Array**: Basic operations and algorithms on arrays.
 2. **LinkedList**: Implementation of singly linked list, doubly linked list, and circular linked list.
+3. **Stack**: Basic operations and algorithms on Stack.
+4. **Queue**: Basic operations and algorithms on Queue.
+5. **BInary Tree**: Implementation of Binary Tree, Tree traversal and BST.
+6. **Priority Queue & Binary Heap**: Representation of Binary Heap.
+7. **Graph**: Representation of Undirected graph, BFS and DFS.
+8. **Hashimg**: Implementation of Hash table and Collision Technique.
+9. **Trie**: Implementation of Trie using TrieNode.
+10. **Dynamic Programming**: Representation of DP using Fibonacci Series.
+
+# Implemented Algorithms
+
+1. **Sorting Algorithms**: Bubble, Selection, Merge and Quick Sort.
 
 ## How to Use
 
