@@ -4,7 +4,7 @@ public class Arrays {
 
     // printing each element of array
     public static void printArray(int [] arr){
-        int l = arr.length;
+
         for (int element : arr) {
             System.out.print(element + " ");
         }
@@ -14,17 +14,17 @@ public class Arrays {
     // Remove Even integers from an array
     public static int [] removeEven(int [] arr){
         int oddCount = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 != 0) {
+        for (int j : arr) {
+            if (j % 2 != 0) {
                 oddCount++;
             }
         }
 
         int [] Result = new int [oddCount];
         int index = 0;
-        for (int i = 0; i < arr.length; i++){
-            if (arr[i] % 2 != 0) {
-                Result[index] = arr[i];
+         for (int j : arr) {
+            if (j % 2 != 0) {
+                Result[index] = j;
                 index++;
             }
         }
@@ -40,24 +40,24 @@ public class Arrays {
         System.out.println();
     }
 
-    // method - 2
-//    public static void reverseArray(int [] arr, int start, int end){
-//        while (start < end){
-//            int temp;
-//            temp = arr[start];
-//            arr[start] = arr[end];
-//            arr[end] = temp;
-//            start++;
-//            end--;
-//        }
-//    }
+    /* method - 2
+    public static void reverseArray(int [] arr, int start, int end){
+        while (start < end){
+            int temp;
+            temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    } */
 
     // Finding Minimum value in an Array
     public static void MinValue(int [] arr){
-        int min = arr[0];
-        for (int i = 1; i < arr.length; i++){
-            if (arr[i] < min){
-                min = arr[i];
+        int min = Integer.MAX_VALUE;
+        for (int j : arr) {
+            if (j < min) {
+                min = j;
             }
         }
         System.out.println(min);
@@ -66,9 +66,9 @@ public class Arrays {
     // Finding Maximum value in an Array
     public static void MaxValue(int [] arr){
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < arr.length; i++ ){
-            if (arr[i] > max){
-                max = arr[i];
+        for (int j : arr) {
+            if (j > max) {
+                max = j;
             }
         }
         System.out.println(max);
@@ -79,14 +79,13 @@ public class Arrays {
         int max = Integer.MIN_VALUE;
         int secMax = Integer.MIN_VALUE;
 
-        for (int i = 0; i < arr.length; i++){
-             if (arr[i] > max){
-                 secMax = max;
-                 max = arr[i];
-             }
-             else if (arr[i] > secMax && arr[i] != max){
-                 secMax = arr[i];
-             }
+        for (int j : arr) {
+            if (j > max) {
+                secMax = max;
+                max = j;
+            } else if (j > secMax && j != max) {
+                secMax = j;
+            }
         }
         System.out.println(secMax);
     }
