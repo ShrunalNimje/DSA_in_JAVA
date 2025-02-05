@@ -59,7 +59,7 @@ public class SinglyLinkedList {
             return;
         }
         ListNode temp = head;
-        while (null != temp.next){
+        while (temp.next != null){
             temp = temp.next;
         }
         temp.next = newNode;
@@ -71,6 +71,7 @@ public class SinglyLinkedList {
         if (position == 1){
             newNode.next = head;
             head = newNode;
+            return;
         }
 
         ListNode previous = head;
@@ -246,8 +247,8 @@ public class SinglyLinkedList {
                 temp = temp.next;
         }
 
-        newNode.next = temp;
         previous.next = newNode;
+        newNode.next = temp;
         return head;
     }
 
@@ -259,11 +260,6 @@ public class SinglyLinkedList {
 
         ListNode temp = head;
         ListNode previous = null;
-
-        while (temp != null && temp.data == key){
-            head = temp.next;
-            return true;
-        }
 
         while (temp != null && temp.data != key){
             previous = temp;
@@ -375,9 +371,9 @@ public class SinglyLinkedList {
     }
 
     // Merging two sorted singly linked list
-    public static ListNode MergeTwoList(ListNode a, ListNode b, int data){
-        ListNode copy = new ListNode(data);
-        ListNode temp = copy;
+    public static ListNode MergeTwoList(ListNode a, ListNode b){
+        ListNode dummy = new ListNode(0);
+        ListNode temp = dummy;
 
         while (a != null && b != null){
             if (a.data <= b.data){
@@ -392,14 +388,9 @@ public class SinglyLinkedList {
             temp = temp.next;
         }
 
-        if (a == null){
-            temp.next = b;
-        }
-        else {
-            temp.next = a;
-        }
+        temp.next = (a != null) ? a : b;
 
-        return copy.next;
+        return dummy.next;
     }
 
     public static void main(String[] args) {
@@ -542,7 +533,7 @@ public class SinglyLinkedList {
         singlyLinkedList2.DisplaySinglyLinkedList();
 
         SinglyLinkedList mergeTwo = new SinglyLinkedList();
-        mergeTwo.head= MergeTwoList(singlyLinkedList1.head, singlyLinkedList2.head, 0);
+        mergeTwo.head= MergeTwoList(singlyLinkedList1.head, singlyLinkedList2.head);
         mergeTwo.DisplaySinglyLinkedList();
 
     }

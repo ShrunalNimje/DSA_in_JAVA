@@ -119,7 +119,7 @@ public class CircularSinglyLinkedList {
         return first.data;
     }
 
-    // Removing first node from circular singly linked list
+    // Removing last node from circular singly linked list
     public void removeLast(){
         if (isEmpty()){
             throw new NoSuchElementException("List is Empty!");
